@@ -1,0 +1,76 @@
+import math
+print("TERMINAL CALCULATOR")
+
+def fact(n):
+    res = 1
+    for i in range(1, n+1):
+        res = res * i
+    return res
+def avg(l):
+    return round(sum(l) / len(l), 2)
+def percent(value, outof):
+    return round((value / outof)*100)
+
+while True:
+    inp = input("Choose Operation: +, -, *, /, !, avg, percent, square, cube, square root, area\n OR \n QUIT:")
+    opr = {'+': lambda x,y: x+y, '-': lambda x,y: x-y, "*" : lambda x,y: x*y, '/': lambda x, y: x/y }
+
+    if inp in ["+", "-", "*", "/"]:
+        a = int(input("Enter first number: "))
+        b = int(input("Enter second number: "))
+        result = round(opr[inp](a, b), 2)
+        print(f"{a} {inp} {b} = {result}")
+
+    elif inp == "!":
+        n = int(input("Enter number: "))
+        f = fact(int(n))
+        print(f'factorial of {n} is {f}')
+
+    elif inp == "avg":
+        num = int(input("Enter number of numbers: "))
+        l = []
+        for i in range(num):
+            l.append(int(input(f"Enter numbers {i + 1}: ")))
+        print(f"Average of {l} is {avg(l)}")
+
+    elif inp=="percent":
+        value = int(input("enter value:"))
+        outof = int(input("out of total: "))
+        print(f"the percent of {value}/{outof} is {percent(value, outof)}")
+
+    elif inp=="square":
+        sq = int(input("Enter number to be squared: "))
+        result = pow(sq, 2)
+        print(f"Square of {sq} is {result}")
+
+    elif inp == "cube":
+        cu = int(input("Enter number to be cubed: "))
+        result = pow(cu, 3)
+        print(f"Square of {cu} is {result}")
+
+    elif inp == "squareroot":
+        num = int(input("enter number"))
+        ad = math.sqrt(num)
+        print(ad)
+
+    elif inp == "area":
+        obj = input("Enter shape:\nsquare\nrectangle\ncircle: ")
+        if obj == "square":
+            side = int(input("Enter length of sides: "))
+            area = pow(side, 2)
+            print(f"Area of {obj} is {area}")
+
+        elif obj == "rectangle":
+            l = int(input("Enter length: "))
+            b = int(input("Enter breadth: "))
+            area = l * b
+            print(f"Area of {obj} is {area}")
+
+        elif obj == "circle":
+            r = int(input("Enter radius: "))
+            area = round(math.pi * pow(r, 2), 2)
+            print(f"Area of {obj} is {area}")
+    elif inp == "QUIT":
+        break
+    else:
+        print("invalid operation")
